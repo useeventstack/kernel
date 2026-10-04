@@ -1,0 +1,33 @@
+[package]
+name = "ues"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+description = "Durable execution kernel with first-class execution futures"
+# The kernel itself is intended to stay permissively licensed and independently
+# adoptable (see docs/adr/ADR-011-licensing.md). UNLICENSED here covers the
+# surrounding platform, which is proprietary.
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/useeventstack/useeventstack"
+publish = false
+
+# The prototype deliberately has zero external dependencies:
+#   * argument parsing, JSON emission and property-test randomness are hand rolled
+#     so that `cargo test` is fully offline, hermetic and deterministic.
+
+[lib]
+name = "ues"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ues"
+path = "src/main.rs"
+
+[dependencies]
+
+[dev-dependencies]
+
+[profile.release]
+opt-level = 2
+lto = "thin"
